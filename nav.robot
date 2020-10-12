@@ -1,20 +1,15 @@
 ***Settings***
 
 
-Library     AppiumLibrary
+Library         AppiumLibrary
+Test Setup      Open Session
+Test Teardown   Close Session
 
 
 ***Test Cases***
 
 
 Deve acessar a tela Dialogs
-    Set Appium Timeout  5
-    Open Application    http://localhost:4723/wd/hub
-    ...                 automationName=UiAutomator2
-    ...                 platformName=Android
-    ...                 deviceName=Emulator
-    ...                 app=${EXECDIR}/app/twp.apk
-
     Wait Until Page Contains          COMEÇAR       
     Click Text                        COMEÇAR  
     Wait Until Element Is Visible     xpath=//android.widget.ImageButton[@content-desc="Open navigation drawer"]      
@@ -27,17 +22,7 @@ Deve acessar a tela Dialogs
     Element Text Should Be            id=io.qaninja.android.twp:id/toolbarTitle       DIALOGS
 
 
-    Close Application
-
 Deve acessar a tela de Formulários
-    Set Appium Timeout  5
-
-    Open Application    http://localhost:4723/wd/hub
-    ...                 automationName=UiAutomator2
-    ...                 platformName=Android
-    ...                 deviceName=Emulator
-    ...                 app=${EXECDIR}/app/twp.apk
-
     Wait Until Page Contains          COMEÇAR       
     Click Text                        COMEÇAR  
     Wait Until Element Is Visible     xpath=//android.widget.ImageButton[@content-desc="Open navigation drawer"]      
@@ -48,7 +33,17 @@ Deve acessar a tela de Formulários
     Click Text                        FORMS 
     Wait Until Element is Visible     id=io.qaninja.android.twp:id/toolbarTitle       
     Element Text Should Be            id=io.qaninja.android.twp:id/toolbarTitle       FORMS
-
-
-    Close Application
  
+
+***Keywords***
+
+Open Session
+    Set Appium Timeout  5
+    Open Application    http://localhost:4723/wd/hub
+    ...                 automationName=UiAutomator2
+    ...                 platformName=Android
+    ...                 deviceName=Emulator
+    ...                 app=${EXECDIR}/app/twp.apk
+
+Close Session
+        Close Application
